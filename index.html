@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Connect Four - Project 1</title>
+  <!-- <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+  </script> -->
+  <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+  <h1>Connect Four Championships</h1>
+  <span class='statusMsg'>Click [Start the Game] to begin.</span>
+  <span class='errMsg'></span>
+  <div class='player'>
+    <!-- <span class='score'>score:</span> -->
+    <span class="token">
+      <img src="images/greendot-small.png" title="game piece for player1" alt="game piece"/>Player 1
+    </span>
+    <!-- <span class='score'>score:</span>< -->
+    <span class="token">
+      <img src="images/purpledot-small.png" title="game piece for player2" alt="game piece"/>Player 2
+    </span>
+  </div>
+
+  <button class='start'>Start the Game</button>
+  <hr>
+  <!-- add game board 7 cols x 6 rows  -->
+  <div id="game"></div>
+  <script src='scripts/script.js'></script>
+  <footer>
+    <p>&copy; 2016 Cranky Gamers. Join our team: <a href="mailto:becranky@crankygamers.us">becranky@crankygamers.com</p>
+  </footer>
+</body>
+</html>
