@@ -84,17 +84,17 @@ Each state is defined as a class assigned to each of the 42 cells at different p
 
 When the board is first rendered (at game start), all cells are tagged with classes ‘.space’ and ‘.empty’. Of all the classes assigned to a `<div>` only class ‘.space’ is defined as an actual CSS style. I also added a designator for row and col so I could later figure out the winner. Here are some samples of how a given cell (at column 2, row 5) changes state from game start ('empty') to game end ('win'). 
 
-`<div class=‘c2r5 space empty’></div>`
+`<div class=‘col2 row5 space empty’></div>`
 
-`<div class=‘c2r5 space player1’></div>`
+`<div class=‘col2 row5 space player1’></div>`
 
-`<div class=‘c2r5 space player1 win’></div>`
+`<div class=‘col2 row5 space player1 win’></div>`
 
-`<div class=‘c2r4 space player1 win’></div>`
+`<div class=‘col2 row4 space player1 win’></div>`
 
-`<div class=‘c2r3 space player1 win’></div>`
+`<div class=‘col2 row3 space player1 win’></div>`
 
-`<div class=‘c2r2 space player1 win’></div`
+`<div class=‘col2 row2 space player1 win’></div`
 
 Since each cell was defined with its own event function, the code knows which cell was chosen. When a cell is clicked, the code checks to see it is available for play. It does this by checking the status of the cell; who owns it and is it empty.
 
@@ -104,8 +104,8 @@ If this statement is true, the cell is available for the current player to add t
 
 Once the token is added, the ‘empty’ class is replaced with the class of the current player - ‘player1’ or ‘player2’ to designated ownership.
 
-`<div class="c2 space player2"><img src="images/purpledot.png"></div>`
-(cell c2 is owned by player2 and shows that player’s game token)
+`<div class="col2 r5 space player2"><img src="images/purpledot.png"></div>`
+(cell at col2 row5 is owned by player2 and shows that player’s game token)
 
 ###Choosing a Winner
 
