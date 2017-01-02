@@ -104,7 +104,7 @@ If this statement is true, the cell is available for the current player to add t
 
 Once the token is added, the ‘empty’ class is replaced with the class of the current player - ‘player1’ or ‘player2’ to designated ownership.
 
-`<div class="col2 r5 space player2"><img src="images/purpledot.png"></div>`
+`<div class="col2 row5 space player2"><img src="images/purpledot.png"></div>`
 (cell at col2 row5 is owned by player2 and shows that player’s game token)
 
 ###Choosing a Winner
@@ -113,7 +113,7 @@ Using the state machine to track ownership (status) of each cell, makes it easie
 
 `if ( $(‘.player1’).length === 4 ) { }`
 
-This statement returns the number of times the class ‘player1’ is used on the page. Since the code only adds this class after a token has been played, it represents how many cells are owned by each player. Once either player has placed four tokens on the board, I run `manageData.checkForWinner()` method to see if the current player has won the game.
+This statement returns the number of times the class ‘player1’ is used on the page. Since the code only adds this class after a token has been played, it represents how many cells are owned by each player. Once either player has placed four tokens on the board, the method `manageData.checkForWinner()` is called to determine if the current player has won the game.
 
 If the current player wins, the game is stopped (events are disabled), and a winning message is displayed.
 
