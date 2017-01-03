@@ -10,24 +10,36 @@
 </head>
 <body>
   <h1>Connect Four Championships</h1>
-  <span class='statusMsg'>Click [Start the Game] to begin.</span>
-  <span class='errMsg'></span>
+  <a href="https://en.wikipedia.org/wiki/Connect_Four#Gameplay" target="_blank">Rules of the Game</a>
+  <span class='statusMsg'>Player1 starts</span>
+
+  <!-- <form class='form'>
+    <label for="name">First player:</label>
+    <input type='text' name='player1'>
+    <label for="name">Second player:</label>
+    <input type='text' name='player2'>
+    <button class='frmSave' type='submit'>Save</button>
+  </form><br /> -->
   <div class='player'>
     <!-- <span class='score'>score:</span> -->
+    <!-- <img src="images/player1.png" title="player 1" alt="ConnectFour finalist"> -->
     <span class="token">
-      <img src="images/greendot-small.png" title="game piece for player1" alt="game piece"/>Player 1
+      <img class='play1' src="images/player1.png" title="ConnectFour finalist" alt="player 1">
+      <img src="images/greendot-small.png" title="game piece for player1" alt="game piece"/>Monica
     </span>
     <!-- <span class='score'>score:</span>< -->
     <span class="token">
-      <img src="images/purpledot-small.png" title="game piece for player2" alt="game piece"/>Player 2
+      <img class='play2' src="images/player2.png" title="ConnectFour finalist" alt="player 2">
+      <img src="images/purpledot-small.png" title="game piece for player2" alt="game piece"/>Ronnie
     </span>
   </div>
 
   <button class='start'>Start the Game</button>
+  <span class='errMsg'></span>
   <hr>
   <!-- add game board 7 cols x 6 rows  -->
   <div id="game"></div>
-  <script src='scripts/script.js'></script>
+  <script src='js/script.js'></script>
   <footer>
     <p>&copy; 2016 Cranky Gamers. Join our team: <a href="mailto:becranky@crankygamers.us">becranky@crankygamers.com</p>
   </footer>
