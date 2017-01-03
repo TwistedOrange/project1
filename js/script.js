@@ -10,7 +10,7 @@ const manageData = {
   theBoard: Array(42).fill(''),
   gameWon: false,
   score: Array(2).fill(0),
-  playerNames: ['player1', 'player2'],
+  playerNames: ['Monica', 'Ronnie'],
   playerID: ['player1', 'player2'],
 
   resetGame: function () {
@@ -25,23 +25,32 @@ const manageData = {
 
     manageBoard.buildBoard();
     manageUI.showMessage('Active player: ' + manageData.playerNames[manageData.currentPlayer], true);
+    $('.play1').addClass('p1');
   },
 
-  savePlayerName: function(pname) {
-    console.log('savePlayerName() for player: ' + pname);
-  },
-
+  // Change players & add colored border to new active player
   togglePlayer: function() {
-    this.currentPlayer === 0 ? this.currentPlayer = 1 : this.currentPlayer = 0;
+    if ( this.currentPlayer === 0 ) {
+      this.currentPlayer = 1;
+      // highlight image of current player
+      $('.play2').addClass('p2');
+      $('.play1').removeClass('p1');
+    }
+    else {
+      this.currentPlayer = 0;
+      // highlight image of current player
+      $('.play1').addClass('p1');
+      $('.play2').removeClass('p2');
+    }
     this.currentToken = this.currentPlayer;
   },
 
   // For current player, look at their board pieces and see if
-  //    they have the right pattern to win (4-horz, 4 vert)
+  //   they have the right pattern to win (4-horz, 4 vert)
   // Return TRUE: current player has a winning pattern
   // Return FALSE: current player does not have winning pattern
   checkforWin: function() {
-    console.log('manageData.checkforWin()');
+    //console.log('manageData.checkforWin()');
     let activePlayer =  manageData.playerID[manageData.currentPlayer];
     activePlayer = "." + activePlayer;
 
@@ -55,11 +64,11 @@ const manageData = {
     }
 
     // Yes,  active player has at least 4 occupied cells
-    console.log('checkForWin(), did player: ' + activePlayer + ' win?');
+    console.log('checkForWin(), did ' + manageData.playerNames[manageData.currentPlayer] + ' win?');
 
     // REFACTOR - check board for horz or vert placement
     // CODE HERE
-    //manageData.gameWon = true;
+    manageData.gameWon = true;
 
     return manageData.gameWon;
   }
@@ -78,7 +87,7 @@ const manageBoard = {
     $.each(manageData.theBoard, function(index, cell) {
       // add two classes 1) style, 2) initial state 'empty'
       var $newCell = $('<div><div>')
-        .addClass('c'+ col + 'r' + row)
+        .addClass('col'+ col + ' row' + row)
         .addClass('space empty')
         .on('click', function() {
           // add click event to each cell
@@ -89,7 +98,7 @@ const manageBoard = {
 
       // increment row/col labels to identify cell location within the board
       col += 1;
-      if ( col == 8 ) {
+      if ( col == 7 ) {
         col = 0;
         row += 1;
       }
@@ -99,7 +108,7 @@ const manageBoard = {
   isAvailable: function(cell) {
   // check if current selected cell can be played
   //  class 'empty' added initially to all cells to show their state as available
-    if ( $(cell).hasClass('empty') ) {
+    if ( $(cell).hasClass('empty') && !manageData.gameWon ) {
       return true;
     }
     return false;
@@ -114,11 +123,23 @@ const manageBoard = {
     // 6. If winner, announce the name and lock the board
     //console.log('cellClicked() = ', cell);
 
+    // game has been won, but board is still alive (actie click events)
+    if ( manageData.gameWon ) {
+      // deactivate all the 'empty' cells
+      // $('.empty').off('click', manageData.resetGame());
+      // $('.player1').off('click', manageData.resetGame());
+      // $('.player2').off('click', manageData.resetGame());
+      // $('.win').off('click', manageData.resetGame());
+      return false;
+    }
+
     manageUI.showMessage('Active player: ' + manageData.playerNames[currentPlayer], true);
+
+    // highlight player's photo
 
     // classes: '.empty', '.player1', '.player2', '.win'
     if ( ! manageBoard.isAvailable(cell) ) {
-      manageUI.showMessage("Selected cell is not available.", false);
+      manageUI.showMessage("[ Selected cell is not available ]", false);
     } else {
       // yes, selected cell is available
       manageUI.showMessage("");
@@ -139,7 +160,7 @@ const manageBoard = {
       // 2b. If NO, swap players, write next player's name to board
       if ( manageData.checkforWin() === true ) {
         // yes current player won the game
-        manageUI.showMessage("WINNER is: " + playerClass, true);
+        manageUI.showMessage("WINNER is: " + manageData.playerNames[manageData.currentPlayer], true);
 
         // disable the board from further play - remove click events
         $('.start').off('click', manageData.resetGame);
@@ -181,6 +202,12 @@ const manageUI = {
     }
   },
 
+  savePlayerName: function() {
+    // 1. Read form with player names
+    // 2. Save player names for display
+    console.log('savePlayerName()');
+  },
+
   // An empty cell is selected:
   // (1) place current player's token in that spot
   // (2) check for a win,
@@ -199,18 +226,20 @@ const manageUI = {
   },
 };
 
-/*
+/**************
   Configure listen events for various actions on page load
-*/
+**************/
 window.onload = function() {
   console.log('window loaded');
 
-  $('#btnRules').on('click',manageUI.showRules);
+  // $('#btnRules').on('click',manageUI.showRules);
   // $('#btnTrivia').on('click',manageUI.showTrivia);
 
   $('.start').on('click', manageData.resetGame);
 
   $('.close').on('click', function() {
     $('.notes').hide();
-  })
+  });
+
+  // $('.frmSave').on('click', manageUI.savePlayerName);
 }
