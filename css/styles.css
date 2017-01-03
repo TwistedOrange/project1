@@ -13,11 +13,19 @@ hr {
 h1 {
   color: blue;
 }
-
+img {
+  margin-right: .5em;
+}
+a {
+  float: right;
+}
 .errMsg {
   float: right;
   display: inline-block;
   padding-bottom: 15px;
+  color: maroon;
+  font-size: 1.2em;
+  font-style: oblique;
 }
 
 .statusMsg {
@@ -33,30 +41,42 @@ h1 {
   margin-top: 10px;
   background-color: orange;
 }
-
+.p1 {
+  border: 8px solid green;
+  padding: 1px;
+}
+.p2 {
+  border: 8px solid purple;
+  padding: 1px;
+}
 footer {
   font-size: 0.8em;
-  background-color: #ebebe0;
+  background-color: #B3F0F6;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   text-align: center;
 }
-
+.imgPlayer {
+    border-color: green;
+    border-width: thick;
+}
 .space {
-  border: 1px solid #ebebeb;
+  /*border: 2px dashed #CED2D2;*/
+  box-shadow: inset 0 0 8px grey;
+  /*border-radius: 8px;*/
   float: left;
   height: 50px;
   width: 50px;
-  margin: 2px;
+  margin: 4px;
 }
 .space:hover {
   background-color: #e1e9b7;
 }
-.win {
-  /* animate the winning play */
 
+.win {
+  background-color: #pink;
 }
 
 /******** STYLES for IDs ********/
